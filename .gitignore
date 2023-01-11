@@ -128,4 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# my company private data
 prj_23001_dashborad_prep/data_files/
+
+# Mac 
+
+.DS_Store

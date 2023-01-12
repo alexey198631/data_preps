@@ -14,7 +14,7 @@ logger = logging.getLogger('scraping')
 print('Loading...')
 logger.info('Loading...')
 
-conn = sqlite3.connect('companies.sqlite')
+conn = sqlite3.connect('data_files/companies.sqlite')
 cur = conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS COMPANIES')

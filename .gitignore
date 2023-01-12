@@ -137,3 +137,5 @@ prj_23002_links_for_companies/logs.txt
 # Mac 
 
 .DS_Store
+
+companies.sqlite

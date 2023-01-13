@@ -133,9 +133,14 @@ prj_23001_dashborad_prep/data_files/
 prj_23002_links_for_companies/data_files/
 prj_23002_links_for_companies/.idea/
 prj_23002_links_for_companies/logs.txt
+prj_23003_clean_customer_list/data_files/
+prj_23004_check_indirect_customers/data_files/
+prj_23005_price_comparison/data_files/
 
 # Mac 
 
 .DS_Store
 
 companies.sqlite
+
+.gitignore

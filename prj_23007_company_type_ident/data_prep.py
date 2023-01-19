@@ -65,7 +65,6 @@ cur.execute('''UPDATE Germany SET opco = 'Germany' ''')
 conn.commit()
 
 
-
 # sqlstr = 'SELECT Customer, opco FROM Germany ORDER BY Customer DESC LIMIT 10'
 #
 # for row in cur.execute(sqlstr):

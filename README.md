@@ -19,4 +19,12 @@ prj_23004_check_indirect_customers:
 
 prj_23005_price_comparison:
 
-- pricebook vs pricesheet to find diffference 
+- pricebook vs pricesheet to find diffference
+
+prj_23006_contact_list
+
+- create file with contacts for different countries
+
+prj_23007_company_type_ident
+
+- using open information from company db to understand a customer type - service provider / manufacturer / etc.

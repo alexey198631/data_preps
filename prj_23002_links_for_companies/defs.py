@@ -6,10 +6,9 @@ logger = logging.getLogger('scraping.defs')
 
 def comp_link(y):
     for comp_link in y:
-        print(comp_link[0])
+        print(comp_link)
         logger.debug(f'links {comp_link[0]}')
-        return comp_link[0]
-
+        return comp_link
 
 def comp_title(y):
     for comp_title in y:
@@ -20,5 +19,6 @@ def comp_title(y):
 
 def comp_description(y):
     for comp_description in y:
+        print(comp_description[2])
         logger.debug(f'description {comp_description[2]}')
         return comp_description[2]

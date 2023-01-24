@@ -14,13 +14,14 @@ logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
 logger = logging.getLogger('scraping')
 
 
+
 print('Loading...')
 logger.info('Loading...')
 
 
 conn = sqlite3.connect('data_files/OEM.sqlite')
 cur = conn.cursor()
-cur.execute('DROP TABLE IF EXISTS OEM')
+#cur.execute('DROP TABLE IF EXISTS OEM')
 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS OEM (company TEXT, country TEXT, industry TEXT, code TEXT, address TEXT, dbname TEXT)''')
@@ -34,9 +35,9 @@ search_url = 'search?Name='
 country = '&Address='
 after = '&ShowBranches=false&CompanyTypes=10&CompanyTypes=11&CompanyTypes=12&CompanyTypes=160&CompanyTypes=3&CompanyTypes=14&CompanyTypes=102&CompanyTypes=120&CompanyTypes=151&CompanyTypes=167&CompanyTypes=13&CompanyTypes=107&CompanyTypes=154&CompanyTypes=100&CompanyTypes=0&CompanyTypes=999'
 
-x = 0
+x = 96
 print(len(OEMS))
-while x < 100:
+while x < 120:
 
     company = OEMS.iloc[x, 0]
     country_0 = OEMS.iloc[x, 1]

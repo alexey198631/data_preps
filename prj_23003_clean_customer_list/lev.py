@@ -9,11 +9,12 @@ company_names = df["Customer Name"].tolist()
 final_result = pd.DataFrame()
 
 # Set a threshold for similarity score
-threshold = 0.9
+threshold = 0.5
+border = len(company_names)
 
 # Compare each pair of company names
-for i in range(len(company_names)):
-    for j in range(i+1, len(company_names)):
+for i in range(1000):
+    for j in range(i+1, 1000):
         # Calculate Jaro-Winkler distance
         distance = jellyfish.jaro_winkler(company_names[i], company_names[j])
 

@@ -17,7 +17,7 @@ logger.info('Loading...')
 conn = sqlite3.connect('data_files/companies_l.sqlite')
 cur = conn.cursor()
 
-cur.execute('DROP TABLE IF EXISTS COMPANIES')
+#cur.execute('DROP TABLE IF EXISTS COMPANIES')
 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS COMPANIES (company TEXT, title TEXT, description TEXT, link TEXT )''')
@@ -36,7 +36,7 @@ temp = []
 
 print(len(companies))
 
-x = 0
+x = 166
 while x < len(companies):
 
     company = companies.iloc[x, 0]

@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from requests import get
 
 usr_agent = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.101 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36'}
 
 def _req(term, results, lang, start, proxies):
     resp = get(
@@ -67,3 +67,7 @@ def search(term, num_results=10, lang="en", proxy=None, advanced=False):
                                 yield SearchResult(link['href'], title.text, description.text)
                             else:
                                 yield link['href'], title.text, description.text
+
+
+for i in search('Yokogwa', num_results=10, lang="en"):
+    print(i)

@@ -53,8 +53,6 @@ def plot_graphs(df, nm):
     fig, axs = plt.subplots(rows, cols, figsize=(16, 5 * rows))
     fig.suptitle(nm, fontsize=24, weight='bold')
     axs = axs.flatten()
-
-
     plt.rcParams['font.family'] = 'Arial'
 
 
@@ -63,12 +61,12 @@ def plot_graphs(df, nm):
         ax = axs[i]
         if group.empty:
             ax.set_title(f'{name}', fontsize=18, weight='bold')
-            ax.text(0.5, 0.5, 'NO DATA', fontsize=18, ha='center', va='center')
+            ax.text(0.5, 0.5, 'N/A', fontsize=18, ha='center', va='center')
             ax.axis('off')
             continue
         elif len(group['FY'].unique().tolist()) < 2:
             ax.set_title(f'{name}', fontsize=18, weight='bold')
-            ax.text(0.5, 0.5, 'NO DATA', fontsize=18, ha='center', va='center')
+            ax.text(0.5, 0.5, 'N/A', fontsize=18, ha='center', va='center')
             ax.axis('off')
             continue
         #ax = axs[i // 2, i % 2]
@@ -78,6 +76,7 @@ def plot_graphs(df, nm):
         # ax.set_xlabel('FY')
         ax.set_ylabel('Order Intake')
         ax.set_title(f'{name}', fontsize=18, weight='bold')
+        ax.set_ylim(bottom=0)
 
         x_labels = ['FY' + str(x)[2:] for x in group['FY']]
         ax.set_xticks(group['FY'])
@@ -86,14 +85,14 @@ def plot_graphs(df, nm):
         x = group['FY'].astype(float)
         y = group['order_intake_amount_eur'].astype(float)
 
-        if count_non_zero(list(y)) > 3:
+        if count_non_zero(list(y)) > 1:
             slope, intercept, r_value, p_value, std_err = linregress(x, y)
             trend_line = slope * x + intercept
-            if (trend_line < 0).any():
-                continue
+            #if (trend_line < 0).any():
+             #   continue
             color = 'g' if slope > 0 else 'grey'
             ax.plot(x, trend_line, color, label='Trend Line')
-            ax.legend(loc="upper left")
+            ax.legend() #loc="upper left"
 
         for bar in bars:
             height = bar.get_height()
@@ -126,7 +125,7 @@ for affiliate in affiliates:
     print(affiliate)
     affiliate_df = source[source.company_code_n == affiliate]
     plot_graphs(affiliate_df, affiliate)
-"""
+
 #companies graphs per BU for years in bars (column - for_bu)
 companies = source.customer_name.unique().tolist()
 for company in companies:
@@ -143,5 +142,5 @@ for t in types:
     print(t)
     types_df = source[source.type == t]
     plot_graphs(types_df, t)
-"""
+
 print('Done!')

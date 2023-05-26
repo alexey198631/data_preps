@@ -4,29 +4,7 @@
 
 Here you can find different apps for data preparation with Pandas.
 
-1. **prj_23001_dashborad_prep**: file as customer definition table for Tableau dashboard;
-
-2. **prj_23002_links_for_companies**: list of web links for companies from my list;
-
-3. **prj_23003_clean_customer_list**:clean legal forms from long list of customers;
-
-4. **prj_23004_check_indirect_customers**: check types of customers in long customer list for identifying those which has different types;
-
-5. **prj_23005_values_comparison**: finding the difference between different column with values;
-
-6. **prj_23006_contact_list**: create file with contacts for different countries based on initial contact information;
-
-7. **prj_23007_company_type_ident**: using open information from company db to understand a customer type - service provider / manufacturer / etc;
-
-8. **prj_23008_new_layout**: it creates new excel table from existing one with better layout for pivoting;
-
-9. **prjj_23009_bu_graphs**
-
-10. **prj_23010_safety_stock**
-
-11. **prj_23011_sales_and_GP_trend_analysis_for_Indirect_Sales**
-
-12. [**prj_23012_order_intake_file_update**](https://github.com/alexey198631/data_preps/tree/main/prj_23012_order_intake_file_update)
+#### [**prj_23012_order_intake_file_update**](https://github.com/alexey198631/data_preps/tree/main/prj_23012_order_intake_file_update)
 
 The Python script you are describing is designed to transform Excel data sources into an SQL database, along with performing some necessary 
 small modifications to the database table. 
@@ -48,7 +26,7 @@ Here's an outline of the script's functionality:
 In summary, the script automates the process of updating customer and order databases based on the latest month's results. 
 It takes Excel files as input, transforms the data, updates the SQL database, and produces an output Excel worksheet for integration with the Tableau dashboard.
 
-13. [**prj_23013_attendee_report**](https://github.com/alexey198631/data_preps/tree/main/prj_23013_attendee_report)
+#### [**prj_23013_attendee_report**](https://github.com/alexey198631/data_preps/tree/main/prj_23013_attendee_report)
 
 This Python application is designed to extract data from a CSV file and create separate pandas DataFrames 
 for specific rows that contain key words such as 'Host Details', 'Panelist Details', and 'Attendee Details'. 
@@ -58,3 +36,25 @@ target row is found. Once all the target rows have been processed, the program r
 DataFrames containing the data from the CSV file that corresponds to each of the target rows. This application 
 can be useful for data processing and analysis tasks that require separate DataFrames for different types of data, 
 such as attendance reports or meeting logs.
+
+[**prj_23001_dashborad_prep**](https://github.com/alexey198631/data_preps/tree/main/prj_23001_dashborad_prep): file as customer definition table for Tableau dashboard;
+
+[**prj_23002_links_for_companies**](https://github.com/alexey198631/data_preps/tree/main/prj_23002_links_for_companies): list of web links for companies from my list;
+
+[**prj_23003_clean_customer_list**](https://github.com/alexey198631/data_preps/tree/main/prj_23003_clean_customer_list):clean legal forms from long list of customers;
+
+[**prj_23004_check_indirect_customers**](https://github.com/alexey198631/data_preps/tree/main/prj_23004_check_indirect_customers): check types of customers in long customer list for identifying those which has different types;
+
+[**prj_23005_values_comparison**](https://github.com/alexey198631/data_preps/tree/main/prj_23005_price_comparison): finding the difference between different column with values;
+
+[**prj_23006_contact_list**](https://github.com/alexey198631/data_preps/tree/main/prj_23006_contact_list): create file with contacts for different countries based on initial contact information;
+
+[**prj_23007_company_type_ident**](https://github.com/alexey198631/data_preps/tree/main/prj_23007_company_type_ident): using open information from company db to understand a customer type - service provider / manufacturer / etc;
+
+[**prj_23008_new_layout**](https://github.com/alexey198631/data_preps/tree/main/prj_23008_new_layout): it creates new excel table from existing one with better layout for pivoting;
+
+[**prjj_23009_bu_graphs**](https://github.com/alexey198631/data_preps/tree/main/prj_23009_bu_graphs)
+
+[**prj_23010_safety_stock**](https://github.com/alexey198631/data_preps/tree/main/prj_23010_safety_stock)
+
+[**prj_23011_sales_and_GP_trend_analysis_for_Indirect_Sales**](https://github.com/alexey198631/data_preps/tree/main/prj_23011_sales_and_GP_trend_analysis_for_Indirect_Sales)

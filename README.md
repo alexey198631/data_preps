@@ -26,7 +26,7 @@ Here you can find different apps for data preparation with Pandas.
 
 11. **prj_23011_sales_and_GP_trend_analysis_for_Indirect_Sales**
 
-12. **prj_23012_order_intake_file_update**
+12. [**prj_23012_order_intake_file_update**](https://github.com/alexey198631/data_preps/tree/main/prj_23012_order_intake_file_update)
 
 The Python script you are describing is designed to transform Excel data sources into an SQL database, along with performing some necessary 
 small modifications to the database table. 
@@ -34,14 +34,16 @@ small modifications to the database table.
 The main purpose of the script is to update the customer and order databases based on the results of the latest month. 
 Here's an outline of the script's functionality:
 
-    1. The script expects various input files in Excel format.
+    0. Initial transformation from Excel file to SQL database (prj_23012_to_sql), additional check of initial information (23012_check_partners_types)
+    1. The script expects input files in Excel format - naming YEARMONTH.xlsx
     2. It begins by parsing the Excel files, extracting the relevant data, and performing any required data transformations.
     3. The script establishes a connection to the SQL database.
-    4. It creates or updates the necessary tables in the database based on the Excel data.
-    5. Next, the script inserts the transformed data from the Excel files into the corresponding tables in the database.
-    6. After the data has been successfully inserted, the script performs additional modifications to the tables as needed.
-    7. Once the database updates are completed, the script generates a final Excel worksheet in the standard format required by the company.
-    8. This output Excel file contains the updated databases, ready for use in connecting to the Tableau dashboard.
+    4. It creates or updates the necessary tables in the database based on the Excel data 
+    5. Next, the script inserts the transformed data from the Excel files into the corresponding tables in the database. (1 - 5 prj_23012_db_update_with_month_results)
+    6. After the data has been successfully inserted, the script performs additional modifications to the tables as needed (prj_23012_db_modifications)
+    7. Once the database updates are completed, the script generates a final Excel worksheet in the standard format required by the company 
+    8. This output Excel file contains the updated databases, ready for use in connecting to the Tableau dashboard (prj_23012_customer_definition_table_to_mark_sales_orders)
+    9. Additional file allows to get different products summary results (prj_23012_bu_group_results)
 
 In summary, the script automates the process of updating customer and order databases based on the latest month's results. 
 It takes Excel files as input, transforms the data, updates the SQL database, and produces an output Excel worksheet for integration with the Tableau dashboard.

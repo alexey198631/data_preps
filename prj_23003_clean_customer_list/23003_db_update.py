@@ -1,5 +1,8 @@
+# it is necessary to represent numbers of customer into text field not label
+
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QFileDialog
+from PyQt5.QtCore import Qt
 import sqlite3
 
 
@@ -21,9 +24,11 @@ class DatabaseManager:
 
     def search_company(self, search_term):
         query = "SELECT sold_to_customer, agent_person, company_code_n, customer_name, indirect_direct, channel, type, tier, tier_new, Comments FROM customers WHERE customer_name LIKE ? OR sold_to_customer LIKE ?"
-        self.cursor.execute(query, (search_term, search_term))
-        result = self.cursor.fetchone()
-        return result
+        self.cursor.execute(query, (f"%{search_term}%", f"%{search_term}%"))
+        first_result = self.cursor.fetchone()
+        all_results = self.cursor.fetchall()
+        sold_to_customers = [str(result[0]) for result in all_results]
+        return first_result, sold_to_customers
 
     def save_all_changes(self, values):
         query = "UPDATE customers SET sold_to_customer = ?, agent_person = ?, company_code_n = ?, customer_name = ?, indirect_direct = ?, channel = ?, type = ?, tier = ?, tier_new = ?, Comments = ? WHERE sold_to_customer = ?"
@@ -68,6 +73,8 @@ class MainWindow(QMainWindow):
 
         self.result_label = QLabel("Search result:")
 
+
+
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.search_label)
         self.layout.addWidget(self.search_input)
@@ -83,6 +90,8 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.save_button)
         self.layout.addWidget(self.close_button)
         self.layout.addWidget(self.progress_label)
+
+        self.progress_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
 
         self.central_widget = QWidget()
         self.central_widget.setLayout(self.layout)
@@ -101,7 +110,7 @@ class MainWindow(QMainWindow):
         if not search_term:
             return
 
-        result = self.db_manager.search_company(search_term)
+        result, sold_to_customers_list = self.db_manager.search_company(search_term)
         if result is None:
             # No matching record found
             for field in self.fields:
@@ -112,6 +121,7 @@ class MainWindow(QMainWindow):
             for field, value in zip(self.fields, result):
                 field.setText(str(value))
             self.original_company = result[0]
+            self.progress_label.setText(', \n'.join(sold_to_customers_list))
             print(self.original_company)
 
     def save_changes(self):
@@ -144,8 +154,18 @@ class MainWindow(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
+    #db_manager = DatabaseManager()
+    #db_manager.connect("data_files/customer_data.db")
+
+    # Prompt the user to select the database file
+    file_dialog = QFileDialog()
+    db_file, _ = file_dialog.getOpenFileName(None, "Select Database File", "", "SQLite Database Files (*.db)")
+
+    if not db_file:
+        sys.exit()
+
     db_manager = DatabaseManager()
-    db_manager.connect("data_files/customer_data.db")
+    db_manager.connect(db_file)
 
     window = MainWindow(db_manager)
     window.move(100, 100)

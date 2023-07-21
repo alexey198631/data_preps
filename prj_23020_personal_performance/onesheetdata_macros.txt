@@ -1,0 +1,31 @@
+Sub CombineColumnsAC()
+    Dim ws As Worksheet
+    Dim newSheet As Worksheet
+    Dim lastRow As Long
+    Dim i As Long
+    Dim combinedCol As Long
+    
+    ' Create a new sheet for combined data
+    Set newSheet = ThisWorkbook.Sheets.Add(After:=ThisWorkbook.Sheets(ThisWorkbook.Sheets.Count))
+    newSheet.Name = "CombinedData"
+    
+    combinedCol = 1 ' Starting column in the combined sheet
+    
+    ' Loop through each sheet in the workbook
+    For Each ws In ThisWorkbook.Sheets
+        ' Skip the newly created combined sheet
+        If ws.Name <> newSheet.Name Then
+            ' Determine the last row in the current sheet
+            lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
+            
+            ' Copy the values from columns A and C to the combined sheet
+            For i = 1 To lastRow
+                newSheet.Cells(i, combinedCol).Value = ws.Cells(i, 1).Value ' Copy column A
+                newSheet.Cells(i, combinedCol + 1).Value = ws.Cells(i, 3).Value ' Copy column C
+            Next i
+            
+            combinedCol = combinedCol + 2 ' Move to the next available column in the combined sheet
+        End If
+    Next ws
+End Sub
+

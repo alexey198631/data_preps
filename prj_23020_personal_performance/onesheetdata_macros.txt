@@ -29,3 +29,46 @@ Sub CombineColumnsAC()
     Next ws
 End Sub
 
+
+Sub HighlightMaxValues()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim maxVal As Double, secondMaxVal As Double, thirdMaxVal As Double
+    Dim maxCell As Range, secondMaxCell As Range, thirdMaxCell As Range
+    Dim col As Integer
+
+    Set ws = ActiveSheet
+    Set rng = ws.Range("A1:R" & ws.Cells(ws.Rows.Count, "E").End(xlUp).Row) ' it necessary to correct E - the longest row
+
+    For col = 1 To rng.Columns.Count
+        If col Mod 2 = 0 Then ' Even column
+            maxVal = Application.WorksheetFunction.Max(rng.Columns(col))
+            Set maxCell = rng.Columns(col).Find(What:=maxVal, LookIn:=xlValues, LookAt:=xlWhole)
+            maxCell.Interior.Color = RGB(255, 255, 0) ' Yellow
+
+            secondMaxVal = Application.WorksheetFunction.Large(rng.Columns(col), 2)
+            Set secondMaxCell = rng.Columns(col).Find(What:=secondMaxVal, LookIn:=xlValues, LookAt:=xlWhole)
+            secondMaxCell.Interior.Color = RGB(216, 216, 216) ' Light Grey
+
+            thirdMaxVal = Application.WorksheetFunction.Large(rng.Columns(col), 3)
+            Set thirdMaxCell = rng.Columns(col).Find(What:=thirdMaxVal, LookIn:=xlValues, LookAt:=xlWhole)
+            thirdMaxCell.Interior.Color = RGB(255, 165, 0) ' Orange
+        Else ' Odd column
+            Dim maxRange As Range
+            Set maxRange = rng.Columns(col)
+            
+            maxVal = Application.WorksheetFunction.Max(maxRange)
+            Set maxCell = maxRange.Find(What:=maxVal, LookIn:=xlValues, LookAt:=xlWhole)
+            If Not maxCell Is Nothing Then maxCell.Interior.Color = RGB(144, 238, 144) ' Light Green
+            
+            secondMaxVal = Application.WorksheetFunction.Large(maxRange, 2)
+            Set secondMaxCell = maxRange.Find(What:=secondMaxVal, LookIn:=xlValues, LookAt:=xlWhole)
+            If Not secondMaxCell Is Nothing Then secondMaxCell.Interior.Color = RGB(144, 238, 144) ' Light Green
+            
+            thirdMaxVal = Application.WorksheetFunction.Large(maxRange, 3)
+            Set thirdMaxCell = maxRange.Find(What:=thirdMaxVal, LookIn:=xlValues, LookAt:=xlWhole)
+            If Not thirdMaxCell Is Nothing Then thirdMaxCell.Interior.Color = RGB(144, 238, 144) ' Light Green
+        End If
+    Next col
+End Sub
+

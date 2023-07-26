@@ -23,7 +23,7 @@ class DatabaseManager:
             print("Connection Closed!")
 
     def search_company(self, search_term):
-        query = "SELECT sold_to_customer, agent_person, company_code_n, customer_name, indirect_direct, channel, type, tier, tier_new, Comments FROM customers WHERE customer_name LIKE ? OR sold_to_customer LIKE ?"
+        query = "SELECT sold_to_customer, agent_person, company_code_n, customer_name, indirect_direct, channel, type, tier, tier_new, countries, Comments FROM customers WHERE customer_name LIKE ? OR sold_to_customer LIKE ?"
         self.cursor.execute(query, (f"%{search_term}%", f"%{search_term}%"))
         first_result = self.cursor.fetchone()
         all_results = self.cursor.fetchall()
@@ -31,7 +31,7 @@ class DatabaseManager:
         return first_result, sold_to_customers
 
     def save_all_changes(self, values):
-        query = "UPDATE customers SET sold_to_customer = ?, agent_person = ?, company_code_n = ?, customer_name = ?, indirect_direct = ?, channel = ?, type = ?, tier = ?, tier_new = ?, Comments = ? WHERE sold_to_customer = ?"
+        query = "UPDATE customers SET sold_to_customer = ?, agent_person = ?, company_code_n = ?, customer_name = ?, indirect_direct = ?, channel = ?, type = ?, tier = ?, tier_new = ?, countries= ?, Comments = ? WHERE sold_to_customer = ?"
         values_updated = values
         print("Saving changes...")
         self.cursor.execute(query, values_updated)
@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
         self.search_button.clicked.connect(self.search_company_like)
 
         # Create fields and labels
-        self.field_names = ['sold_to_customer', 'agent_person', 'company_code_n', 'customer_name', 'indirect_direct', 'channel', 'type', 'tier', 'tier_new', 'Comments']
+        self.field_names = ['sold_to_customer', 'agent_person', 'company_code_n', 'customer_name', 'indirect_direct', 'channel', 'type', 'tier', 'tier_new', 'countries', 'Comments']
         self.fields = []
         self.labels = []
 

@@ -72,3 +72,5 @@ Sub HighlightMaxValues()
     Next col
 End Sub
 
+=RANK(INDEX(C$3:C$1048576;MATCH(1965;B$3:B$1048576;0));C$3:C$1048576)
+
